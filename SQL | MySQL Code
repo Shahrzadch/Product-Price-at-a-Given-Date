@@ -1,0 +1,4 @@
+# Write the MySQL query statement below 
+Select DISTINCT product_id, 10 as price From Products Where product_id not IN(Select Distinct product_id From Products WHERE change_date <='2019-08-16' )
+UNION 
+Select product_id, new_price as price from Products where (product_id,change_date) in (select product_id , max(change_date) AS date From Products WHERE change_date <='2019-08-16' Group By product_id);
